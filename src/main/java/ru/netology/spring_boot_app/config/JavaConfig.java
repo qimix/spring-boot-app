@@ -2,19 +2,21 @@ package ru.netology.spring_boot_app.config;
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import ru.netology.spring_boot_app.profiles.DevProfile;
 import ru.netology.spring_boot_app.profiles.ProductionProfile;
 import ru.netology.spring_boot_app.profiles.SystemProfile;
 
+@Configuration
 public class JavaConfig {
     @Bean
-    @ConditionalOnProperty
+    @ConditionalOnProperty(value = "netology.profile.dev", matchIfMissing = true)
     public SystemProfile devProfile() {
         return new DevProfile();
     }
 
     @Bean
-    @ConditionalOnProperty
+    @ConditionalOnProperty(value = "netology.profile.prod", matchIfMissing = true)
     public SystemProfile prodProfile() {
         return new ProductionProfile();
     }
