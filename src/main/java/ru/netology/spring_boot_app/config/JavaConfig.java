@@ -10,13 +10,13 @@ import ru.netology.spring_boot_app.profiles.SystemProfile;
 @Configuration
 public class JavaConfig {
     @Bean
-    @ConditionalOnProperty(value = "netology.profile.dev", matchIfMissing = true)
+    @ConditionalOnProperty(value = "netology.profile.dev", havingValue = "true")
     public SystemProfile devProfile() {
         return new DevProfile();
     }
 
     @Bean
-    @ConditionalOnProperty(value = "netology.profile.prod", matchIfMissing = true)
+    @ConditionalOnProperty(value = "netology.profile.prod", havingValue = "true")
     public SystemProfile prodProfile() {
         return new ProductionProfile();
     }
